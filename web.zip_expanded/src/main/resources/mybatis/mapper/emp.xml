@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="emp">
+
+	<select id="selectList" resultType="com.lsm.web.emp.EmpVO">
+	SELECT ENAME, JOB
+	FROM emp
+	</select>
+	
+	<select id="selectMember" parameterType="com.lsm.web.emp.EmpVO" resultType="com.lsm.web.emp.EmpVO">
+	SELECT ENAME, JOB
+	FROM emp
+	WHERE ENAME = #{ename}
+	</select>
+	
+	<select id="selectMemberDname" parameterType="com.lsm.web.emp.EmpSVO" resultType="com.lsm.web.emp.EmpVO">
+	select empno, ename, job, dname, e.deptno 
+	from emp as e inner join dept_copy as d
+	on e.DEPTNO = d.DEPTNO
+	<if test="searchType != null and searchType == 'job'">
+	where job = #{searchWord}
+	</if>
+	<if test="searchType != null and searchType == 'dname'">
+	where dname = #{searchWord}
+	</if>	
+	</select>
+	
+	<update id="updateDname" parameterType="com.lsm.web.emp.EmpVO" >
+	update dept_copy set DNAME = #{dname} where DEPTNO = #{deptno} 
+	</update>
+	
+	<select id="selectJob" parameterType="String" resultType="com.lsm.web.emp.EmpVO" >
+	select ename, job, dname from emp as e inner join dept_copy as d
+	on e.DEPTNO = d.DEPTNO
+	where job = #{job}
+	</select>
+	
+	<select id="selectDname" parameterType="String" resultType="com.lsm.web.emp.EmpVO" >
+	select ename, job, dname from emp as e inner join dept_copy as d
+	on e.DEPTNO = d.DEPTNO
+	where dname = #{dname}
+	</select>
+	
+	<select id="selectEmpList" resultType="com.lsm.web.emp.EmpVO">
+	select empno, ename, job, sal, ifnull((emp.comm),0) as comm, ifnull((comm+sal),sal) as total from emp;
+	<!-- 같은 쿼리 select empno, ename, job, sal, comm, (coalesce(sal,0)+coalesce(comm,0) as total from emp; -->
+	</select>
+	
+	<select id="selectSalList" parameterType="Integer" resultType="com.lsm.web.test.TestEmpVO" >
+	select ename, sal, dname from emp as e inner join dept as d
+	on e.DEPTNO = d.DEPTNO
+	where sal >= #{sal}
+	</select>
+	
+</mapper>
+

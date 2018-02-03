@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resume">
+
+	<insert id="resumeApply" parameterType="com.lsm.web.resume.ResumeVO">
+	insert into user_resume 
+	(user_name, user_sal, user_address, user_favorite, user_hobby, user_intro, user_img) 
+	values 
+	(#{userName},#{userSal},#{userAddress},#{userFavorite},#{userHobby},#{userIntro},#{userImg})
+	</insert>
+	
+	<insert id="applyTest">
+	insert into test
+	(user_name,user_sal,user_intro)
+	values
+	(#{userName},#{userSal},#{userIntro})
+	</insert>
+</mapper>

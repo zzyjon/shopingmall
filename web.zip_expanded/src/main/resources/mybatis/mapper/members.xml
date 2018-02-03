@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="members">
+
+	<select id="selectList" parameterType="com.lsm.web.members.MemberVO" resultType="com.lsm.web.members.MemberVO">
+	select m_no, m_id, m_name 
+	from members 
+	limit #{countPerPage} offset #{offset};
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+	select count(m_id) as cnt
+	from members
+	</select>
+	
+	<select id="selectMember" parameterType="com.lsm.web.member.MembersVO" resultType="com.lsm.web.member.MembersVO">
+	select m_id, m_name, m_email, m_address1
+	from members
+	where m_id = #{mId}
+	</select>
+	
+	<select id="selectMemberCount" parameterType="com.lsm.web.members.MemberVO" resultType="Integer" >
+	select count(m_id) as cnt 
+	from members 
+	where m_id = #{mId} and m_password = sha(#{mPassword})
+	</select>
+	
+</mapper>

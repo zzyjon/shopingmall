@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testEmp">
+	
+	<select id="selectSalList" parameterType="Integer" resultType="com.lsm.web.test.TestEmpVO" >
+	select ename, sal, dname from emp as e inner join dept as d
+	on e.DEPTNO = d.DEPTNO
+	where sal >= #{sal}
+	</select>
+	
+	<select id="selectEmp"  resultType="com.lsm.web.test.TestEmpVO">
+	select ename, sal, dname from emp as e inner join dept as d
+	on e.DEPTNO = d.DEPTNO
+	</select>
+</mapper>
+
