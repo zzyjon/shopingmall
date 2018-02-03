@@ -16,7 +16,21 @@
 		<div class="box-header">
 			<h3 class="box-title">사원 목록</h3>
 		</div>
-		<div class="box-body table-responsive no-padding">
+			<form id="frmSearch" action="/emp/searchEmpResult" method="get" class="sidebar-form">
+				<div class="col-sm-6 pull-right">
+					<select id="searchType" name="searchType">
+						<option value="job">직무</option>
+						<option value="dname">부서명</option>
+					</select> 
+					<input type="text" id="searchWord" name="searchWord" class="input-sm"> 
+					<button type="button" id="search-btn"
+						class="btn-xs">
+						<i class="fa fa-search">검색</i>
+					</button>
+				</div>
+			</form>
+
+			<div class="box-body table-responsive no-padding">
 			<table class="table table-hover">
 				<tr>
 					<th style="width:15px">이름</th>
@@ -24,16 +38,16 @@
 					<th style="width:25px">부서명</th>
 					<th style="width:15px"></th>
 				</tr>
-				<c:forEach var="emp" items="${dList }">
+				<c:forEach var="emp" items="${list }">
 					<tr>
-						<td>${emp.eName}</td>
+						<td>${emp.ename}</td>
 						<td>${emp.job }</td>
-						<td><input class="dname" type="text" name="${emp.deptno }" value="${emp.dName }" ></td>
-						<td><button class="btn-xs btn-primary btndelete" type="button" id="${emp.empNo }">수정</button></td>
+						<td><input class="userDname" type="text" id="${emp.empno }" value="${emp.dname }" ></td>
+						<td><button class="btn-xs btn-primary btndelete" type="button" onclick="doModify(${emp.deptno},${emp.empno })">수정</button></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<form id="frm" action="/emp/dnameUpdate" method="post">
+			<form id="frm" action="/emp/updateDname" method="post">
 				<input type="hidden" id="send_dname" name="dname" />
 				<input type="hidden" id="send_deptno" name="deptno" />
 			</form>
@@ -45,21 +59,36 @@
 <%@ include file="/WEB-INF/views/include/js.jsp"%>
 <!-- 자바스크립트 끝 -->
 <script>
-$(document).ready(function(){
-	
-	$(".dname").click(function(){
-		var dname = $(this).val();
-		var deptno = $(this).attr("name");
-		//alert(dname+":"+deptno);
+	function doModify(deptno, empno) {
+		var dname = $("#"+empno).val();  // dname에 #userDname의 text값이 저장됨
+		//var dname = $(".userDname").attr();
 		
-		$("#send_dname").val(dname);
+		$("#send_dname").val(dname);	// 
 		$("#send_deptno").val(deptno);
-	})
-	
-	$(".btndelete").click(function(){
+		
+		alert(deptno+" & "+dname);
 		
 		$("#frm").submit();
+	}
+	
+	$(document).ready(function(){
+		$("#search-btn").click(function(){
+			
+			var searchType = $("#searchType").val();
+			var searchWord = $("#searchWord").val();
+			
+			alert(searchType +" & "+ searchWord);
+			
+			if(searchWord == ""){
+				alert("검색어를 입력해주세요");
+				$("#searchWord").focus();
+			}else{
+				$("#frmSearch").submit();
+			}
+		})
+		
+		
+		
 	})
-})
 </script>
 </html>

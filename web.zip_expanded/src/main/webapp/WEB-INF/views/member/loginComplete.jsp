@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="emp" items="${list}">
-${emp.ename } , ${emp.job } <br>
-</c:forEach>
+${sessionScope.id }님 로그인했습니다
 </body>
 </html>

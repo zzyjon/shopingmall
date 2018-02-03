@@ -21,11 +21,11 @@
 </head>
 <body>
 <form id="frm" action="/emp/empSearch" method="post" >
-<input type="text" placeholder="이름을 입력하세요" id="eName" name="eName" /><button id="btnSearch" type="submit">검색</button>
+<input type="text" placeholder="이름을 입력하세요" id="ename" name="ename" /><button id="btnSearch" type="submit">검색</button>
 </form>
 
 <c:forEach var="emp" items="${list }">
-${emp.eName } , ${emp.job } <br>
+${emp.ename } , ${emp.job } <br>
 </c:forEach>
 </body>
 </html>
