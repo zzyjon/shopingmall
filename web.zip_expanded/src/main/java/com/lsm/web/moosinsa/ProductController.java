@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.lsm.web.members.MemberVO;
 
 @Controller
 public class ProductController {
@@ -22,7 +25,7 @@ public class ProductController {
 	/**
 	 * 상품 목록 뿌리기
 	 * */
-	@GetMapping("/page/product/goods_list")
+	@GetMapping("/page/product/goods_all_list")
 	public String selectProductList(Model model	) {
 		
 		List<ProductVO> list = service.selectProductList();
@@ -86,6 +89,46 @@ public class ProductController {
 		System.out.println("coupon: "+paramVO.getpCouponUseCheck());
 		
 		service.updateProduct(paramVO);
+		
+		return "page/product/goods_list";
+	}
+	
+	/**
+	 * 페이징 처리 
+	 * */
+	@GetMapping("/page/product/goods_list")
+	public String memberPaging(Model model, @RequestParam("currPage") int currPage) {
+		
+		List<ProductVO> list = service.selectProductList();
+		List<BrandVO> bList = bService.selectBrand();
+		model.addAttribute("productList", list);
+		model.addAttribute("brandList", bList);
+		
+		ProductVO vo = new ProductVO();
+		
+		vo.setTotalCount(service.countProduct());
+		vo.setCurrPage(currPage);
+		
+		/*Pagenation pg = new Pagenation();
+		pg.setTotalCount(service.selectCount());
+		
+		pg.setCurrPage(currPage);
+		
+		vo.setCountPerPage(pg.getCountPerPage());
+		vo.getOffset();
+		
+		System.out.println(vo.getOffset());
+		*/
+		//model.addAttribute("paging", pg);
+		
+		
+		
+		List<ProductVO> paginglist = service.selectList(vo);
+		model.addAttribute("list",paginglist);
+		model.addAttribute("startPageNum", vo.getStartPageNum());
+		model.addAttribute("lastPageNum", vo.getLastPageNum());
+		model.addAttribute("currPage", vo.getCurrPage());
+		model.addAttribute("totalPage", vo.getTotalPage());
 		
 		return "page/product/goods_list";
 	}

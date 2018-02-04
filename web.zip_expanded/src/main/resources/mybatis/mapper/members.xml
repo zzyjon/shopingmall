@@ -5,11 +5,7 @@
 
 <mapper namespace="members">
 
-	<select id="selectList" parameterType="com.lsm.web.members.MemberVO" resultType="com.lsm.web.members.MemberVO">
-	select m_no, m_id, m_name 
-	from members 
-	limit #{countPerPage} offset #{offset};
-	</select>
+	
 	
 	<select id="selectCount" resultType="Integer">
 	select count(m_id) as cnt

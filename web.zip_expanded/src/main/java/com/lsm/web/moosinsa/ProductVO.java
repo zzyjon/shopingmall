@@ -1,6 +1,8 @@
 package com.lsm.web.moosinsa;
 
-public class ProductVO {
+import com.lsm.web.common.Pagenation;
+
+public class ProductVO extends Pagenation{
 
 	private int pNo;
 
