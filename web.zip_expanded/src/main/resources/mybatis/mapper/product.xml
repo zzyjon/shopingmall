@@ -53,21 +53,5 @@
 	WHERE p_no = #{pNo};
 	</update>
 	
-	<!-- 등록된 상품 카운트 (페이징 처리용)-->
-	<select id="countProduct" resultType="Integer">
-	select count(p_no) as cnt from product;
-	</select>
-	
-	<select id="selectList" parameterType="com.lsm.web.moosinsa.ProductVO" resultType="com.lsm.web.moosinsa.ProductVO">
-	select 
-	p_no, p_code, p_price, p_name, p_brand, p_stock, p_buy_count, p_color, p_size, p_material, p_maker, p_desc, p_coupon_use_check, p_publish_check 
-	from product
-	limit #{limit} offset #{offset};
-	</select>
-	
-	
-	<select>
-	select 
-	</select>
 </mapper>
 

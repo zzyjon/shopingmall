@@ -5,5 +5,5 @@
         <li><a href="/page/product/goods_list"><i class="fa fa-circle-o text-yellow"></i> <span>상품목록</span></a></li>
         <li><a href="/page/product/goods_reg"><i class="fa fa-circle-o text-yellow"></i> <span>상품등록</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>카테고리관리</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>브랜드관리</span></a></li>
+        <li><a href="/page/product/brand_mana"><i class="fa fa-circle-o text-yellow"></i> <span>브랜드관리</span></a></li>
       </ul>
