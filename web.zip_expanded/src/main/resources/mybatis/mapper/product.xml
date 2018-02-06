@@ -64,10 +64,6 @@
 	from product
 	limit #{limit} offset #{offset};
 	</select>
-	
-	
-	<select>
-	select 
-	</select>
+
 </mapper>
 
