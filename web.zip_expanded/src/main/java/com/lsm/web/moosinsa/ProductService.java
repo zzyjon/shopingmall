@@ -30,12 +30,4 @@ public class ProductService {
 	public int updateProduct(ProductVO vo) {
 		return dao.updateProduct(vo);
 	}
-	
-	public int countProduct() {
-		return dao.countProduct();
-	}
-	
-	public List<ProductVO> selectList(ProductVO vo){
-		return dao.selectList(vo);
-	}
 }

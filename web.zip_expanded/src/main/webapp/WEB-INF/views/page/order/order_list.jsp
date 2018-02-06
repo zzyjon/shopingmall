@@ -7,13 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>기본설정관리</title>
   <!-- css 시작 -->
-  <%@ include file="/include/css.jsp"%>
+  <%@ include file="/WEB-INF/views/include/css.jsp"%>
   <!-- css 끝 -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 <!-- 해더파일 시작 -->
-<%@ include file="/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 <!-- 해더파일 끝 -->	
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -21,15 +21,15 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <!-- 왼쪽 유저 패널 시작 -->
-      <%@ include file="/include/user_panel.jsp" %>
+      <%@ include file="/WEB-INF/views/include/user_panel.jsp" %>
       <!-- 왼쪽 유저 패널 끝 -->
       <!-- search form -->
      <!-- 검색폼 시작 --> 
-     <%@ include file="/include/search_form.jsp" %>
+     <%@ include file="/WEB-INF/views/include/search_form.jsp" %>
      <!-- 검색폼 끝 -->
       <!-- /.search form -->
       <!-- 왼쪽 메뉴 시작 -->
-      <%@ include file="/include/left_menu/order_menu.jsp" %>
+      <%@ include file="/WEB-INF/views/include/left_menu/order_menu.jsp" %>
       <!-- 왼쪽 메뉴 끝 -->
     </section>
     <!-- /.sidebar -->
@@ -73,7 +73,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar 오른쪽 설정버튼 시작  -->
-  <%@ include file="/include/sidebar_menu.jsp" %>
+  <%@ include file="/WEB-INF/views/include/sidebar_menu.jsp" %>
   <!-- /.control-sidebar 오른쪽 설정버튼 끝 -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -81,10 +81,10 @@
 </div>
 <!-- ./wrapper -->
 <!-- 자바스크립트 시작 -->
-<%@ include file="/include/js.jsp"%>
+<%@ include file="/WEB-INF/views/include/js.jsp"%>
 <!-- 자바스크립트 끝 -->
 </body>
   <!-- 푸터 시작 -->
-  <%@ include file="/include/footer.jsp"%>
+  <%@ include file="/WEB-INF/views/include/footer.jsp"%>
   <!-- 푸터 끝 -->
 </html>

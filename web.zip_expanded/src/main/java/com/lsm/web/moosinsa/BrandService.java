@@ -14,4 +14,20 @@ public class BrandService {
 	public List<BrandVO> selectBrand(){
 		return dao.selectBrand();
 	}
+	
+	public int countBrand() {
+		return dao.countBrand();
+	}
+	
+	public int insertBrand(BrandVO vo) {
+		return dao.insertBrand(vo);
+	}
+	
+	public int updateBrand(BrandVO vo) {
+		return dao.updateBrand(vo);
+	}
+	
+	public int deleteBrand(BrandVO vo) {
+		return dao.deleteBrand(vo);
+	}
 }

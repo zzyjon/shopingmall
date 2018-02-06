@@ -53,6 +53,7 @@
 	WHERE p_no = #{pNo};
 	</update>
 	
+<<<<<<< HEAD
 	<!-- 등록된 상품 카운트 (페이징 처리용)-->
 	<select id="countProduct" resultType="Integer">
 	select count(p_no) as cnt from product;
@@ -65,5 +66,7 @@
 	limit #{limit} offset #{offset};
 	</select>
 
+=======
+>>>>>>> branch 'master' of https://github.com/zzyjon/shopingmall.git
 </mapper>
 

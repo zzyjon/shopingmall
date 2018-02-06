@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,77 +53,52 @@
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="box box-default">
-					<div class="box-header with-border">
-						<h3 class="box-title">상품 검색</h3>
-						<small>상품을 검색하세요</small>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-1">
-								<div class="form-group">
-									<select class="form-control select2" style="width: 120%;">
-										<option value="pCode">상품코드</option>
-										<option value="pName">상품명</option>
-										<option value="pPrice">상품가격</option>
-										<option value="pMaterial">소재</option>
-										<option value="pBrand">브랜드</option>
-										<option value="pMaker">제조사</option>
-									</select>
-								</div>
-							</div>
-							<!-- /.col -->
-							<div class="col-md-2 col-xs-10">
-								<div class="form-group">
-									<input type="text" id="SearchWord" name="SearchWord"
-										class="form-control">
-								</div>
-							</div>
-							<div class="col-md-2 col-xs-2">
-								<div class="form-group">
-									<button type="button" id="btnSearch" class="btn btn-primary">검색</button>
-								</div>
-							</div>
-							<!-- /.col -->
-						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.box-body -->
-				</div>
+
 				<!-- /.box -->
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-md-8">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">상품 목록</h3>
+								<h3 class="box-title">브랜드 관리</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<table id="example2" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>상품코드</th>
-											<th>상품명</th>
-											<th>브랜드</th>
-											<th>제조사</th>
-											<th>상품가격</th>
-											<th>재고량</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="product" items="${productList}">
-										<tr>
-											<td>${product.pCode }</td>
-											<td>${product.pName }</td>
-											<td>${product.pBrand }</td>
-											<td>${product.pMaker }</td>
-											<td>${product.pPrice }</td>
-											<td>${product.pStock }</td>
-										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+								<!-- Select multiple-->
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>브랜드 목록</label> <select multiple id="selectBrand"
+											class="form-control">
+											<c:forEach var="brand" items="${brandList }">
+												<option value="${brand.brandNo }">${brand.brandName }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<form role="form">
+										<!-- text input -->
+										<div class="form-inline">
+											<label>브랜드 추가</label> <input type="text" id="brandNameA"
+												class="form-control" placeholder="브랜드명">
+											<button type="button" id="btnApply" class="btn btn-primary">등록</button>
+										</div>
+										<br>
+										<div>
+											<label>현재 브랜드 갯수</label> <small>${countBrand }개</small>
+										</div>
+									</form>
+								</div>
+								<div class="col-md-5">
+									<form role="form">
+										<!-- text input -->
+										<div class="form-inline">
+											<label>브랜드 수정</label><br> <input type="text"
+												id="brandNameM" class="form-control" placeholder="브랜드명">
+											<button type="button" id="btnModify" class="btn btn-primary">수정</button>
+											<button type="button" id="btnDelete" class="btn btn-primary">삭제</button>
+										</div>
+									</form>
+								</div>
 							</div>
 							<!-- /.box-body -->
 						</div>
@@ -149,25 +124,95 @@
 	<%@ include file="/WEB-INF/views/include/js.jsp"%>
 	<!-- 자바스크립트 끝 -->
 	<script>
-		$(function() {
-			/*
-			 테이블 관련 함수
-			paging : 테이블 페이징
-			lengthChange : 뿌려질 데이터 행 갯수
-			searching : 통합검색 기능
-			ordering : 정렬하기
-			info : 전체 행 갯수 표시
-			autoWidth : 자동 너비 조절 기능
-			 */
-			$('#example2').DataTable({
-				'paging' : true,
-				'lengthChange' : true,
-				'searching' : true,
-				'ordering' : true,
-				'info' : true,
-				'autoWidth' : true
+	
+	$(function(){
+		
+		$("#selectBrand").click(function(){
+			$("#brandNameM").val($("#selectBrand option:selected").text());
+		});
+		
+		
+
+			$("#btnDelete").click(function(){
+				if(!$('#selectBrand > option:selected').val()) {
+				    alert("목록에서 브랜드를 선택해주세요");
+				}else{
+					var brandNo = $("#selectBrand option:selected").val();
+					
+					if(confirm("정말 삭제 할겁니까?")){
+						
+						$.ajax({
+							url:"/page/product/brand_delete",
+							type:"post",
+							data:{"brandNo":brandNo},
+							success: function(msg){
+								alert("삭제했습니다");
+								location.reload();
+							},
+							error: function(data){
+								console.log(data);
+								alert("에러");
+							}
+						})
+					}
+				}
+				
+			});
+			
+		
+			$("#btnModify").click(function(){
+				if(!$('#selectBrand > option:selected').val()) {
+				    alert("목록에서 브랜드를 선택해주세요");	
+				}else{
+					var brandNo = $("#selectBrand option:selected").val();
+					var brandName = $("#brandNameM").val();
+					
+					$.ajax({
+						url:"/page/product/brand_update",
+						type:"post",
+						data:{"brandNo":brandNo, "brandName":brandName},
+						success: function(msg){
+							alert("수정했습니다");
+							location.reload();
+						},
+						error: function(data){
+							console.log(data);
+							alert("에러");
+						}
+					})
+				}
+				
 			})
-		})
+		 
+		
+		/*브랜드 추가 */
+		$("#btnApply").click(function(){
+			
+			var brandName = $("#brandNameA").val();
+			if(brandName == ""){
+				alert("브랜드명을 입력해주세요");
+				$("#brandNameA").focus();
+				return false;
+			}
+			$.ajax({
+				url : "/page/product/brand_insert",
+				type : "post",
+				data : {"brandName":brandName},
+				success : function(msg) {
+					alert("등록했습니다");
+					location.reload();
+				},
+				error : function(msg) {
+					console.log(msg);
+					alert("에러");
+				}
+			})
+		});
+		
+	});
+				
+				
+	
 	</script>
 </body>
 <!-- 푸터 시작 -->

@@ -49,17 +49,4 @@ public class ProductDAO {
 		return session.update("product.updateProduct", vo);
 	}
 	
-	/**
-	 * 등록된 상품 갯수 카운트 (페이징처리용)
-	 * */
-	public int countProduct() {
-		return session.selectOne("product.countProduct");
-	}
-	
-	/**
-	 * 상품 목록 조회 페이징
-	 * */
-	public List<ProductVO> selectList(ProductVO vo){
-		return session.selectList("product.selectList", vo);
-	}
 }

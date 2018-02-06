@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <header class="main-header">
 	<!-- Logo -->
-	<a href="/index" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="/page/index" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>Admin</b>LTE</span>
 	</a>
@@ -19,10 +19,10 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/WEB-INF/views/page/basic/shop_info.jsp">기본설정관리<span class="sr-only">(current)</span></a></li>
 				<li><a href="/page/product/goods_list">상품관리</a></li>
-				<li><a href="/page/order/order_list">주문관리</a></li>
-				<li><a href="/page/member/member_list">회원관리</a></li>
-				<li><a href="/page/board/freeboard_list">게시판관리</a></li>
-				<li><a href="/page/chart/sales_chart">통계</a></li>
+				<li><a href="/page/order/order_list.jsp">주문관리</a></li>
+				<li><a href="/views/page/member/member_list1.jsp">회원관리</a></li>
+				<li><a href="/WEB-INF/views/page/board/freeboard_list.jsp">게시판관리</a></li>
+				<li><a href="/WEB-INF/views/page/chart/sales_chart.jsp">통계</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
